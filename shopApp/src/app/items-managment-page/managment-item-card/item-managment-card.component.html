@@ -1,0 +1,24 @@
+<ng-template #viewTemplate>
+  <mat-card class="itemManagmentCard">
+    <mat-card-content class="cardContent">
+      <div class="itemInfo">
+        <div class="mat-body-1">{{ item.name }}</div>
+        <div class="mat-body-1">Price: ${{ item.price }}</div>
+        <div class="mat-body-1">Item ID: {{ item.id }}</div>
+      </div>
+      <div class="cardActions">
+        <button (click)="toggleEditMode()">Edit</button>
+        <button (click)="deleteItem()">Delete</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</ng-template>
+<ng-template #formTemplate>
+  <app-item-form-card
+    [(isFromOpen)]="isFromOpen"
+    [item]="item"
+  ></app-item-form-card>
+</ng-template>
+<ng-container
+  *ngTemplateOutlet="isFromOpen === true ? formTemplate : viewTemplate"
+></ng-container>

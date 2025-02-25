@@ -1,0 +1,17 @@
+<mat-card class="itemCard">
+  <mat-card-header>
+    <mat-card-title>{{ item.name }}</mat-card-title>
+    <mat-card-subtitle>Price: ${{ item.price }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div>
+      <p>Amount Available: {{ item.amount }}</p>
+      <button *ngIf="item.amount" (click)="Buy()">
+        Buy
+      </button>
+      <button *ngIf="isAdmin" (click)="Add()">
+        Add
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,40 @@
+<mat-card class="itemFromCard" [formGroup]="itemForm">
+  <mat-card-content class="cardContent">
+    <div class="itemInfo">
+      <input
+        formControlName="name"
+        [value]="item?.name ?? ''"
+        placeholder="Enter name"
+      />
+      <input
+        formControlName="price"
+        [value]="item?.price ?? 0"
+        type="number"
+        placeholder="Enter price"
+      />
+    </div>
+    <div class="cardActions">
+      <button
+        [disabled]="!itemForm.valid"
+        (click)="saveItem()"
+      >
+        Save
+      </button>
+
+      <button
+        *ngIf="this.onCancel === undefined; else cancel"
+        (click)="Delete()"
+      >
+        delete
+      </button>
+      <ng-template #cancel>
+        <button
+          *ngIf="this.onCancel"
+          (click)="onCancel()"
+        >
+          cancel
+        </button>
+      </ng-template>
+    </div>
+  </mat-card-content>
+</mat-card>

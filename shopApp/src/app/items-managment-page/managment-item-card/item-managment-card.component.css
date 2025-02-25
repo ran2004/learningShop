@@ -1,0 +1,30 @@
+.itemManagmentCard {
+  width: 100%;
+  margin-right: 30%;
+  margin-top: 10%;
+}
+
+.cardContent {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.itemInfo {
+  display: flex;
+  flex-direction: column;
+  height: 60%;
+  justify-content: space-evenly;
+}
+.cardActions {
+  display: flex;
+  justify-content: space-evenly;
+}
+input {
+  margin-top: 15%;
+  height: 30px;
+  font-size: medium;
+}
+.itemManagmentCard mat-body-1 {
+  margin-top: 15%;
+}

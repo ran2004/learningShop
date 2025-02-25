@@ -1,0 +1,21 @@
+<div class="items-managment-page">
+  <h1>Shop</h1>
+  <input
+    type="text"
+    [formControl]="searchControl"
+    placeholder="Search items..."
+    class="filter-input"
+  />
+  <div class="itemCardlist">
+    <app-item-managment-card
+    class="itemCard"
+      *ngFor="let item of filteredItems"
+      [item]="item"
+    ></app-item-managment-card>
+    <mat-card class="add-item-card" *ngIf="!isAddingItem">
+      <button mat-icon-button class="add-item-btn" (click)="startAddingItem()">
+        <mat-icon class="addIcon">add</mat-icon>
+      </button>
+    </mat-card>
+  </div>
+</div>

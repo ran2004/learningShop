@@ -1,0 +1,15 @@
+<div class="login-page">
+    <h1>Login Page</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+
+        <mat-form-field appearance="fill">
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="username" placeholder="Enter your username" />
+            <mat-error *ngIf="loginForm.get('username')?.hasError('required')">Username is required</mat-error>
+          </mat-form-field>
+          <button mat-raised-button type="submit" [disabled]="!loginForm.get('username')?.valid">
+            Login
+          </button>
+    </form>
+  </div>
+  

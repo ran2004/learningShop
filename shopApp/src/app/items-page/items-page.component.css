@@ -1,0 +1,8 @@
+.itemCard{
+    display: flex;
+    width: 10% ;
+}
+
+.item-list{
+    margin-left: 2%;
+}

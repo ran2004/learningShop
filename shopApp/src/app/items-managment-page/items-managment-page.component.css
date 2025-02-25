@@ -1,0 +1,34 @@
+.itemCardlist {
+  display: flex;
+  width: 10%;
+}
+.itemCard{
+    width: 100%;
+    display: flex;
+}
+
+.items-managment-page {
+  margin-left: 2%;
+}
+
+.add-item-card {
+    margin-left: 20%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+}
+
+.add-item-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  width: 116px;
+  height: 160px;
+}
+
+.add-item-card:hover {
+  background-color: #e0e0e0; /* Darker gray on hover */
+}

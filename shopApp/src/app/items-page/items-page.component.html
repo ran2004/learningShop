@@ -1,0 +1,15 @@
+<div class="item-list">
+  <h1>Shop</h1>
+  <input
+    type="text"
+    [formControl]="searchControl"
+    placeholder="Search items..."
+    class="filter-input"
+  />
+  <app-item-card
+    class="itemCard"
+    *ngFor="let item of filteredItems"
+    [isAdmin]="isAdmin"
+    [item]="item"
+  ></app-item-card>
+</div>

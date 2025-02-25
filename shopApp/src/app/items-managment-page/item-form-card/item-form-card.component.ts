@@ -63,10 +63,7 @@ export class ItemFormCardComponent {
     this.isFromOpenChange.emit(!this.isFromOpen);
   }
 
-  Cancel() {
-    if (this.onCancel) this.onCancel();
-    this.isFromOpenChange.emit(!this.isFromOpen);
-  }
+ 
 
   saveItem() {
     const updatedItem: Item = {

@@ -8,14 +8,26 @@
   />
   <div class="itemCardlist">
     <app-item-managment-card
-    class="itemCard"
+      class="itemCard"
       *ngFor="let item of filteredItems"
       [item]="item"
     ></app-item-managment-card>
-    <mat-card class="add-item-card" *ngIf="!isAddingItem">
-      <button mat-icon-button class="add-item-btn" (click)="startAddingItem()">
-        <mat-icon class="addIcon">add</mat-icon>
-      </button>
-    </mat-card>
+    <ng-template #addButtonTemplate>
+      <mat-card class="add-item-card">
+        <button
+          mat-icon-button
+          class="add-item-btn"
+          (click)="startAddingItem()"
+        >
+          <mat-icon class="addIcon">add</mat-icon>
+        </button>
+      </mat-card>
+    </ng-template>
+    <ng-template #formTemplate>
+      <app-item-form-card class="add-item-card" [(isFromOpen)]="isFromOpen"></app-item-form-card>
+    </ng-template>
+    <ng-container
+      *ngTemplateOutlet="isFromOpen === true ? formTemplate : addButtonTemplate"
+    ></ng-container>
   </div>
 </div>

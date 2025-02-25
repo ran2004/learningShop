@@ -1,7 +1,7 @@
 [
   {
     "ContainingType": "ShopApi.Controllers.ItemsController",
-    "Method": "GetUsers",
+    "Method": "GetItems",
     "RelativePath": "Items",
     "HttpMethod": "GET",
     "IsController": true,
@@ -20,9 +20,73 @@
     ]
   },
   {
-    "ContainingType": "ShopApi.Controllers.UsersController",
+    "ContainingType": "ShopApi.Controllers.ItemsController",
+    "Method": "SaveItem",
+    "RelativePath": "Items",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "itemToSave",
+        "Type": "ShopApi.Models.Item",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopApi.Controllers.ItemsController",
+    "Method": "DeleteItem",
+    "RelativePath": "Items/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopApi.Controllers.ItemsController",
+    "Method": "AddItem",
+    "RelativePath": "Items/add/{id}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopApi.Controllers.ItemsController",
+    "Method": "BuyItem",
+    "RelativePath": "Items/buy/{id}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopApi.Controllers.UserController",
     "Method": "GetUsers",
-    "RelativePath": "Users",
+    "RelativePath": "User",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -38,5 +102,37 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "ShopApi.Controllers.UserController",
+    "Method": "SaveUser",
+    "RelativePath": "User",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userToSave",
+        "Type": "ShopApi.Models.User",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ShopApi.Controllers.UserController",
+    "Method": "GetUserById",
+    "RelativePath": "User/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

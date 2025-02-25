@@ -1,21 +1,21 @@
 import { Routes } from '@angular/router';
 import { ItemsPageComponent } from './items-page/items-page.component';
 import { UsersPageComponent } from './users-page/users-page.component';
-import { AdminResolver } from './resolvers/admin.service';
+import { AdminResolver } from './resolvers/admin.resolver';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { ItemsManagmentPageComponent } from './items-managment-page/items-managment-page.component';
+import { UserResolver } from './resolvers/user.resolver';
 
 export const routes: Routes = [
   {
     path: 'items',
     component: ItemsPageComponent,
+
   },
   {
     path: 'itemsManagment',
     component: ItemsManagmentPageComponent,
-    resolve: {
-      isAdmin: AdminResolver,
-    },
+
   },
   {
     path: 'login',
@@ -24,9 +24,7 @@ export const routes: Routes = [
   {
     path: 'users',
     component: UsersPageComponent,
-    resolve: {
-      isAdmin: AdminResolver,
-    },
+
   },
-  { path: '', redirectTo: '/items', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];

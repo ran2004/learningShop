@@ -14,27 +14,10 @@
       />
     </div>
     <div class="cardActions">
-      <button
-        [disabled]="!itemForm.valid"
-        (click)="saveItem()"
-      >
-        Save
+      <button [disabled]="!itemForm.valid" (click)="saveItem()">Save</button>
+      <button (click)="Delete()">
+        {{ this.item ? "Delete" : "Cancel" }}
       </button>
-
-      <button
-        *ngIf="this.onCancel === undefined; else cancel"
-        (click)="Delete()"
-      >
-        delete
-      </button>
-      <ng-template #cancel>
-        <button
-          *ngIf="this.onCancel"
-          (click)="onCancel()"
-        >
-          cancel
-        </button>
-      </ng-template>
     </div>
   </mat-card-content>
 </mat-card>

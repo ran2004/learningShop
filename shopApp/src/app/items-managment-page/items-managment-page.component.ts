@@ -15,17 +15,18 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ManagmentItemCardComponent } from './managment-item-card/item-managment-card.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { ItemFormCardComponent } from "./item-form-card/item-form-card.component";
 
 @Component({
   selector: 'app-items-page',
-  imports: [ManagmentItemCardComponent, CommonModule, ReactiveFormsModule,MatCardModule,MatIconModule ],
+  imports: [ManagmentItemCardComponent, CommonModule, ReactiveFormsModule, MatCardModule, MatIconModule, ItemFormCardComponent],
   templateUrl: './items-managment-page.component.html',
   styleUrl: './items-managment-page.component.css',
 })
 export class ItemsManagmentPageComponent {
   items: Item[] = [{ id: 1, price: 2, amount: 3, name: 'test' }];
   filteredItems: Item[] = [];
-  isAddingItem: boolean = false;
+  isFromOpen: boolean = false;
 
   searchControl: FormControl = new FormControl(''); // FormControl for search input
   newItemForm: FormGroup;
@@ -48,12 +49,12 @@ export class ItemsManagmentPageComponent {
   }
 
   startAddingItem(): void {
-    this.isAddingItem = true;
+    this.isFromOpen = true;
   }
 
   // Cancel adding an item and reset the form
   cancelAddingItem(): void {
-    this.isAddingItem = false;
+    this.isFromOpen = false;
     this.newItemForm.reset();
   }
 
@@ -64,7 +65,7 @@ export class ItemsManagmentPageComponent {
       console.log('New item:', this.newItemForm.value);
       
       // After saving, reset and hide the form
-      this.isAddingItem = false;
+      this.isFromOpen = false;
       this.newItemForm.reset();
     }
   }

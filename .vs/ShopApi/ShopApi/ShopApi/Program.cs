@@ -1,11 +1,14 @@
 using Microsoft.EntityFrameworkCore;
-using ShopApi; // Namespace for ApplicationDbContext
+using ShopApi;
+using ShopApi.Services; // Namespace for ApplicationDbContext
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Register ApplicationDbContext with MySQL as the provider
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseMySQL("Server=localhost;Port=3307;Database=ransshop;User=root;Password="));
+// Register ApplicationDbContext with SQLite as the provider
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"))); // Use SQLite instead of MySQL
+builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<ItemService>();
 
 // Add services to the container.
 builder.Services.AddControllers();

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { NavigationEnd, NavigationStart, Router, RouterModule } from '@angular/router';
 import { UsersService } from '../services/users.service';
-import { ROLE } from '../types/enums/Role';
+import { ROLE, Role } from '../types/enums/Role';
 
 @Component({
   selector: 'app-navbar',
@@ -11,13 +11,32 @@ import { ROLE } from '../types/enums/Role';
   styleUrl: './navbar.component.css',
 })
 export class NavbarComponent implements OnInit {
-  isAdmin: boolean = false;
-
-  constructor(private usersService: UsersService) {}
+  userRole: Role | undefined;
+  constructor(private usersService: UsersService, private router: Router) {}
 
   ngOnInit(): void {
+    this.router.events.subscribe((event) => {
+      console.log(event)
+      if (event instanceof NavigationEnd ) {
+        this.getUserRole();
+      }
+    });
+  }
+
+  getUserRole(): void {
     this.usersService
-      .getCurrentUser()
-      .subscribe((user) => (this.isAdmin = user.role === ROLE.Admin)); 
+      .getUserCurrentRole()
+      .subscribe({
+        next: (response) => {
+          this.userRole = response.userRole
+        },
+        error: (error) => {
+          this.userRole = undefined
+        }});
+  }
+
+  logout(): void {
+    localStorage.removeItem('authToken');
+    this.router.navigate(["login"])
   }
 }

@@ -11,36 +11,45 @@ import {
   distinctUntilChanged,
   switchMap,
 } from 'rxjs';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { ManagmentItemCardComponent } from './managment-item-card/item-managment-card.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { ItemFormCardComponent } from "./item-form-card/item-form-card.component";
+import { ItemFormCardComponent } from './item-form-card/item-form-card.component';
+import { ItemsService } from '../services/items.service';
 
 @Component({
   selector: 'app-items-page',
-  imports: [ManagmentItemCardComponent, CommonModule, ReactiveFormsModule, MatCardModule, MatIconModule, ItemFormCardComponent],
+  imports: [
+    ManagmentItemCardComponent,
+    CommonModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatIconModule,
+    ItemFormCardComponent,
+  ],
   templateUrl: './items-managment-page.component.html',
   styleUrl: './items-managment-page.component.css',
 })
 export class ItemsManagmentPageComponent {
-  items: Item[] = [{ id: 1, price: 2, amount: 3, name: 'test' }];
+  items: Item[] = [];
   filteredItems: Item[] = [];
   isFromOpen: boolean = false;
 
   searchControl: FormControl = new FormControl(''); // FormControl for search input
-  newItemForm: FormGroup;
 
-  constructor(private usersService: UsersService) {
-    this.newItemForm = new FormGroup({
-      name: new FormControl('', Validators.required),
-      price: new FormControl(0, [Validators.required, Validators.min(0)]),
-    });
-  }
+  constructor(private itemsService: ItemsService) {}
 
   ngOnInit(): void {
-    this.filteredItems = this.items;
-
+    this.itemsService.getItems().subscribe((items) => {
+      this.items = items;
+      this.filteredItems = items;
+    });
     this.searchControl.valueChanges
       .pipe(debounceTime(100), distinctUntilChanged())
       .subscribe(() => {
@@ -52,26 +61,38 @@ export class ItemsManagmentPageComponent {
     this.isFromOpen = true;
   }
 
-  // Cancel adding an item and reset the form
-  cancelAddingItem(): void {
-    this.isFromOpen = false;
-    this.newItemForm.reset();
+  deleteItem(idToDelete: number): void {
+    this.itemsService.deleteItem(idToDelete).subscribe(() => {
+      const index = this.items.findIndex((item) => item.id === idToDelete);
+
+      if (index !== -1) {
+        this.items.splice(index, 1);
+        this.filterItems();
+      }
+    });
   }
 
-  // Save the new item (you can send it to an API or add it to a local list)
-  saveItem(): void {
-    if (this.newItemForm.valid) {
-      // Here, you would typically send the form data to the backend
-      console.log('New item:', this.newItemForm.value);
-      
-      // After saving, reset and hide the form
-      this.isFromOpen = false;
-      this.newItemForm.reset();
-    }
+  addItem(newItemData: Item): void {
+    this.itemsService.saveItem(newItemData).subscribe((newItem) => {
+      this.items.push(newItem);
+      this.filterItems();
+    });
+  }
+
+  saveItem(newItemData: Item): void {
+    this.itemsService.saveItem(newItemData).subscribe((updatedItem) => {
+      const itemIndex = this.items.findIndex(
+        (item) => item.id === updatedItem.id
+      );
+      if (itemIndex !== -1) {
+        this.items[itemIndex] = updatedItem;
+      }
+      this.filterItems();
+    });
   }
 
   filterItems(): void {
-    const searchText = this.searchControl.value; // Get value from FormControl
+    const searchText = this.searchControl.value;
 
     this.filteredItems = this.items.filter((item) =>
       item.name.toLowerCase().includes(searchText.toLowerCase())

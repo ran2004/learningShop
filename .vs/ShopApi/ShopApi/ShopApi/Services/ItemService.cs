@@ -31,18 +31,19 @@ namespace ShopApi.Services
             if (existingItem != null)
             {
                 existingItem = item;
-
-                return item;
+            }
+            else
+            {
+                await _context.Items.AddAsync(item);
             }
 
-            await _context.Items.AddAsync(item);
             await _context.SaveChangesAsync();
 
             return item;
         }
 
         public async Task<Item> BuyItem(int id)
-        {         
+        {
             var item = await _context.Items
                 .FirstOrDefaultAsync(i => i.Id == id);
             if (item == null)

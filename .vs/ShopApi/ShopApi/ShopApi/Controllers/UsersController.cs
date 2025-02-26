@@ -1,24 +1,30 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ShopApi.Models;
 using ShopApi.Services;
+using ShopApi.Types;
+using System.Security.Claims;
 
 namespace ShopApi.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("[controller]")]
-    public class UserController : ControllerBase
+    public class UsersController : ControllerBase
     {
+        private readonly TokenService _tokenService;
         private readonly UserService _userService;
 
         // Inject the UserService to interact with the business logic
       
-        private readonly ILogger<UserController> _logger;
+        private readonly ILogger<UsersController> _logger;
 
-        public UserController(ILogger<UserController> logger, UserService userService)
+        public UsersController(ILogger<UsersController> logger, UserService userService, TokenService tokenService)
         {
             _logger = logger;
             _userService = userService;
+            _tokenService = tokenService;
         }
 
         [HttpGet]
@@ -29,8 +35,9 @@ namespace ShopApi.Controllers
             return Ok(users); 
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetUserById(int id)
+        [HttpGet("login/{id}")]
+        [AllowAnonymous] 
+        public async Task<IActionResult> UserLogin(int id)
         {
             var user = await _userService.GetUserByIdAsync(id);
 
@@ -39,7 +46,9 @@ namespace ShopApi.Controllers
                 return NotFound($"User with ID {id} not found.");
             }
 
-            return Ok(user);
+            var token = this._tokenService.GenerateUserToken(user);
+
+            return Ok(new { token });
         }
 
         [HttpPost]
@@ -59,6 +68,20 @@ namespace ShopApi.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        [HttpGet("current/role")]
+        [Authorize] 
+        public ActionResult<string> GetCurrentUserRole()
+        {
+            var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+
+            if (userRole == null)
+            {
+                return Unauthorized("User role not found.");
+            }
+
+            return Ok(new { userRole });
         }
     }
 }

@@ -34,15 +34,13 @@ import { MatInputModule } from '@angular/material/input';
 })
 export class ItemFormCardComponent {
   @Input() item: Item | undefined;
-  @Input() onSave: (() => void) | undefined;
+  @Input() onSave!: (item: Item) => void;
   @Input() onCancel: (() => void) | undefined;
   @Input() isFromOpen!: boolean;
-  @Output() isFromOpenChange  = new EventEmitter<boolean>();
+  @Output() isFromOpenChange = new EventEmitter<boolean>();
   itemForm: FormGroup;
 
-  constructor(
-    private itemService: ItemsService
-  ) {
+  constructor(private itemService: ItemsService) {
     this.itemForm = new FormGroup({
       name: new FormControl('', Validators.required),
       price: new FormControl(0, [Validators.required, Validators.min(0)]),
@@ -59,18 +57,14 @@ export class ItemFormCardComponent {
   }
 
   Delete() {
-    if (this.item) this.itemService.delete(this.item.id);
+    if (this.item) this.itemService.deleteItem(this.item.id);
     this.isFromOpenChange.emit(!this.isFromOpen);
   }
 
- 
-
   saveItem() {
-    const updatedItem: Item = {
-      ...this.item,
-      ...this.itemForm.value,
-    };
-
+    if (!this.item) this.onSave(this.itemForm.value);
+    else this.onSave({...this.itemForm.value,id:this.item.id,amount:this.item.amount})
+    this.itemForm.reset();
     this.isFromOpenChange.emit(!this.isFromOpen);
   }
 }

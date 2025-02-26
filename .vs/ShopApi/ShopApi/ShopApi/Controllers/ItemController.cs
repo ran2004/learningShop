@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ShopApi.Models;
@@ -6,6 +7,7 @@ using ShopApi.Services;
 namespace ShopApi.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("[controller]")]
     public class ItemsController : ControllerBase
     {
@@ -18,6 +20,7 @@ namespace ShopApi.Controllers
             _itemService = itemService;
         }
 
+        [Authorize(Roles = "User,Admin")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Item>>> GetItems()
         {
@@ -26,7 +29,7 @@ namespace ShopApi.Controllers
             return Ok(items);
         }
 
-
+        [Authorize(Roles = "User,Admin")]
         [HttpPatch("buy/{id}")]
         public async Task<IActionResult> BuyItem(int id)
         {
@@ -46,14 +49,15 @@ namespace ShopApi.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPatch("add/{id}")]
-        public async Task<IActionResult> AddItem(int id)
+        public async Task<IActionResult> AddToItem(int id)
         {
             try
             {
                 var item = await _itemService.AddItem(id);
 
-                return CreatedAtAction(nameof(AddItem), new { id = item.Id }, item);
+                return CreatedAtAction(nameof(AddToItem), new { id = item.Id }, item);
             }
             catch (InvalidOperationException ex)
             {
@@ -65,6 +69,7 @@ namespace ShopApi.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> SaveItem([FromBody] Item itemToSave)
         {
@@ -84,6 +89,7 @@ namespace ShopApi.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteItem(int id)
         {

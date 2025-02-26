@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Observable } from 'rxjs';
 import { Item } from '../../types/models/Item';
@@ -12,16 +12,18 @@ import { ItemsService } from '../../services/items.service';
   styleUrl: './item-card.component.css',
 })
 export class ItemCardComponent {
-  @Input() item!: Item;
   @Input() isAdmin: boolean = false;
+  @Input() item!: Item;
+  @Input() buyItem!: (id: number) => void;
+  @Input() addToItem!: (id: number) => void;
 
-constructor(private itemService:ItemsService){}
+  constructor() {}
 
-  Buy(){
-this.itemService.buy(this.item.id)
+  Buy() {
+    this.buyItem(this.item.id);
   }
 
-  Add(){
-    this.itemService.add(this.item.id)
-      }
+  Add() {
+    this.addToItem(this.item.id);
+  }
 }

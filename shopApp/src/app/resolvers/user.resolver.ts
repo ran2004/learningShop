@@ -9,10 +9,9 @@ import {
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { UsersService } from '../services/users.service';
-import { ROLE } from '../types/enums/Role';
-import { User } from '../types/models/User';
+import {  Role } from '../types/enums/Role';
 
-export type UserResolverResult = User | undefined
+export type UserResolverResult = Role | undefined;
 
 @Injectable({
   providedIn: 'root',
@@ -25,14 +24,14 @@ export class UserResolver implements Resolve<UserResolverResult> {
     state: RouterStateSnapshot
   ): Observable<UserResolverResult> {
     return new Observable<UserResolverResult>((observer) => {
-      this.usersService.getCurrentUser().subscribe((user) => {
-        if (user) {
-          this.router.navigate(['/items']);
-          observer.next(user);
-        } else {
+      this.usersService.getUserCurrentRole().subscribe({
+        next: (response) => {
+          observer.next(response.userRole);
+        },
+        error: (error) => {
           this.router.navigate(['/login']);
           observer.next(undefined);
-        }
+        },
       });
     });
   }

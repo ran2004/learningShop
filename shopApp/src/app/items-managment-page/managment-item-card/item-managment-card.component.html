@@ -17,6 +17,7 @@
   <app-item-form-card
     [(isFromOpen)]="isFromOpen"
     [item]="item"
+    [onSave]="this.saveItem.bind(this)"
   ></app-item-form-card>
 </ng-template>
 <ng-container

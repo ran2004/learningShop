@@ -6,7 +6,7 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
 } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { UsersService } from '../services/users.service';
 import { ROLE } from '../types/enums/Role';
@@ -24,16 +24,17 @@ export class AdminResolver implements Resolve<UserResolverResult> {
     state: RouterStateSnapshot
   ): Observable<UserResolverResult> {
     return new Observable<UserResolverResult>((observer) => {
-      this.usersService.getCurrentUser().subscribe((user) => {
-        if (user?.role !== ROLE.Admin) {
-          if (!user) {
-            this.router.navigate(['/login']);
-          } else {
+      this.usersService.getUserCurrentRole().subscribe({
+        next: (response) => {
+          if (response.userRole === ROLE.User) {
             this.router.navigate(['/items']);
           }
-        }
-
-        observer.next(user);
+          observer.next(response.userRole);
+        },
+        error: (error) => {
+          this.router.navigate(['/login']);
+          observer.next(undefined);
+        },
       });
     });
   }

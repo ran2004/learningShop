@@ -144,10 +144,10 @@
         }
       }
     },
-    "/User": {
+    "/Users": {
       "get": {
         "tags": [
-          "User"
+          "Users"
         ],
         "responses": {
           "200": {
@@ -183,7 +183,7 @@
       },
       "post": {
         "tags": [
-          "User"
+          "Users"
         ],
         "requestBody": {
           "content": {
@@ -211,10 +211,10 @@
         }
       }
     },
-    "/User/{id}": {
+    "/Users/login/{id}": {
       "get": {
         "tags": [
-          "User"
+          "Users"
         ],
         "parameters": [
           {
@@ -231,6 +231,35 @@
         "responses": {
           "200": {
             "description": "Success"
+          }
+        }
+      }
+    },
+    "/Users/current/role": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       }

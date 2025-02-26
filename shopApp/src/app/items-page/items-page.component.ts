@@ -2,18 +2,10 @@ import { Component } from '@angular/core';
 import { ItemCardComponent } from './item-card/item-card.component';
 import { Item } from '../types/models/Item';
 import { CommonModule } from '@angular/common';
-import { UsersService } from '../services/users.service';
-import { ROLE } from '../types/enums/Role';
-import {
-  Observable,
-  Subject,
-  debounce,
-  debounceTime,
-  distinctUntilChanged,
-  switchMap,
-} from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ItemsService } from '../services/items.service';
 
 @Component({
   selector: 'app-items-page',
@@ -22,19 +14,24 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './items-page.component.css',
 })
 export class ItemsPageComponent {
-  items: Item[] = [{ id: 1, price: 2, amount: 3, name: 'test' }];
+  items: Item[] = [];
   filteredItems: Item[] = [];
   isAdmin: boolean = false;
-  searchControl: FormControl = new FormControl(''); 
+  searchControl: FormControl = new FormControl('');
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private itemsService: ItemsService
   ) {}
 
   ngOnInit(): void {
+    this.itemsService.getItems().subscribe((items) => {
+      this.items = items;
+      this.filteredItems = items;
+    });
     this.filteredItems = this.items;
-    this.isAdmin = this.route.snapshot.data['user'].isAdmin === ROLE.Admin; 
-
+    // this.isAdmin = this.route.snapshot.data['user']?.isAdmin === ROLE.Admin;
+    this.isAdmin = true;
     this.searchControl.valueChanges
       .pipe(debounceTime(100), distinctUntilChanged())
       .subscribe(() => {
@@ -43,10 +40,35 @@ export class ItemsPageComponent {
   }
 
   filterItems(): void {
-    const searchText = this.searchControl.value; 
+    const searchText = this.searchControl.value;
 
     this.filteredItems = this.items.filter((item) =>
       item.name.toLowerCase().includes(searchText.toLowerCase())
     );
+  }
+
+  buyItem(id: number) {
+    this.itemsService.buyItem(id).subscribe((updatedItem) => {
+      this.updateItems(updatedItem);
+
+      this.filterItems();
+    });
+  }
+
+  addToItem(id: number) {
+    this.itemsService.addToItem(id).subscribe((updatedItem) => {
+      this.updateItems(updatedItem);
+
+      this.filterItems();
+    });
+  }
+
+  updateItems(updatedItem: Item) {
+    const itemIndex = this.items.findIndex(
+      (item) => item.id === updatedItem.id
+    );
+    if (itemIndex !== -1) {
+      this.items[itemIndex] = updatedItem;
+    }
   }
 }

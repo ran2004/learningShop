@@ -1,14 +1,24 @@
 <nav class="navbar">
   <h1>The Store</h1>
   <div class="navigation">
-    <button *ngIf="isAdmin" routerLink="/items" routerLinkActive="active">
+    <button *ngIf="userRole==='Admin'" routerLink="/items" routerLinkActive="active">
       Shop
     </button>
-    <button *ngIf="isAdmin" routerLink="/users" routerLinkActive="active">
+    <button *ngIf="userRole==='Admin'" routerLink="/users" routerLinkActive="active">
       Users
     </button>
-    <button *ngIf="isAdmin" routerLink="/itemsManagment" routerLinkActive="active">
-        Items managment
-      </button>
+    <button
+      *ngIf="userRole==='Admin'"
+      routerLink="/itemsManagment"
+      routerLinkActive="active"
+    >
+      Items managment
+    </button>
+    <button
+      *ngIf="!!userRole"
+      (click)="logout()"
+    >
+      logout
+    </button>
   </div>
 </nav>

@@ -9,6 +9,8 @@
   <div class="itemCardlist">
     <app-item-managment-card
       class="itemCard"
+      [saveItemInDB]="saveItem.bind(this)"
+      [deleteItemInDB]="deleteItem.bind(this)"
       *ngFor="let item of filteredItems"
       [item]="item"
     ></app-item-managment-card>
@@ -24,7 +26,7 @@
       </mat-card>
     </ng-template>
     <ng-template #formTemplate>
-      <app-item-form-card class="add-item-card" [(isFromOpen)]="isFromOpen"></app-item-form-card>
+      <app-item-form-card [onSave]="addItem.bind(this)" class="add-item-card" [(isFromOpen)]="isFromOpen"></app-item-form-card>
     </ng-template>
     <ng-container
       *ngTemplateOutlet="isFromOpen === true ? formTemplate : addButtonTemplate"

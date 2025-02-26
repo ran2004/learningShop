@@ -53,7 +53,7 @@
   },
   {
     "ContainingType": "ShopApi.Controllers.ItemsController",
-    "Method": "AddItem",
+    "Method": "AddToItem",
     "RelativePath": "Items/add/{id}",
     "HttpMethod": "PATCH",
     "IsController": true,
@@ -84,9 +84,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ShopApi.Controllers.UserController",
+    "ContainingType": "ShopApi.Controllers.UsersController",
     "Method": "GetUsers",
-    "RelativePath": "User",
+    "RelativePath": "Users",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -104,9 +104,9 @@
     ]
   },
   {
-    "ContainingType": "ShopApi.Controllers.UserController",
+    "ContainingType": "ShopApi.Controllers.UsersController",
     "Method": "SaveUser",
-    "RelativePath": "User",
+    "RelativePath": "Users",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -120,9 +120,29 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ShopApi.Controllers.UserController",
-    "Method": "GetUserById",
-    "RelativePath": "User/{id}",
+    "ContainingType": "ShopApi.Controllers.UsersController",
+    "Method": "GetCurrentUserRole",
+    "RelativePath": "Users/current/role",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ShopApi.Controllers.UsersController",
+    "Method": "UserLogin",
+    "RelativePath": "Users/login/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

@@ -11,5 +11,7 @@
     *ngFor="let item of filteredItems"
     [isAdmin]="isAdmin"
     [item]="item"
+    [buyItem]="buyItem.bind(this)"
+    [addToItem]="addToItem.bind(this)"
   ></app-item-card>
 </div>

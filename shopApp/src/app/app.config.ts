@@ -1,5 +1,6 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
 
 import { routes } from './app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations';
@@ -7,5 +8,5 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 export const baseUrl = 'http://localhost:5212'
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideAnimations(),provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes)]
+  providers: [provideHttpClient(),provideAnimations(),provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes)]
 };

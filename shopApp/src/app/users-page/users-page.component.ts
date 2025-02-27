@@ -3,6 +3,7 @@ import { User } from '../types/models/User';
 import { UserCardComponent } from './user-card/user-card.component';
 import { CommonModule } from '@angular/common';
 import { UsersService } from '../services/users.service';
+import { SignalRService } from '../services/signal.service';
 
 @Component({
   selector: 'app-users-page',
@@ -12,10 +13,29 @@ import { UsersService } from '../services/users.service';
 })
 export class UsersPageComponent {
   users: User[] = [];
+  connectedUsersIds: string[] = []; // Store IDs of connected users
 
-  constructor(private usersService: UsersService) {}
+  constructor(
+    private usersService: UsersService,
+    private signalService: SignalRService
+  ) {}
 
   ngOnInit(): void {
-    this.usersService.getUsers().subscribe((users) => (this.users = users));
+    this.connectedUsersIds = this.signalService.recivedUsersIdsList
+    this.signalService.onReceiveUserList((connectedUserIds: string[]) => {
+      this.connectedUsersIds = connectedUserIds;
+      this.updateUsersActivityStatus();
+    });
+
+    this.usersService.getUsers().subscribe((users) => {
+      this.users = users;
+      this.updateUsersActivityStatus();
+    });
+  }
+
+  private updateUsersActivityStatus(): void {
+    this.users.forEach((user) => {
+      user.isActive = this.connectedUsersIds.includes(user.id.toString()); 
+    });
   }
 }

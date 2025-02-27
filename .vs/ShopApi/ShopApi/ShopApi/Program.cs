@@ -1,28 +1,33 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using ShopApi;
 using ShopApi.Services;
+using ShopApi;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Register ApplicationDbContext with SQLite as the provider
+// Register services
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"))); // Use SQLite instead of MySQL
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Register your services
+// Add services for TokenService, UserService, and ItemService
 builder.Services.AddScoped<TokenService>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<ItemService>();
+builder.Services.AddScoped<UserConnectionManager>();
 
-// Add CORS policy
+// Add SignalR service
+builder.Services.AddSignalR();
+
+// CORS Configuration (ensure it allows the frontend URL)
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowLocalhost", builder =>
         builder.WithOrigins("http://localhost:4200")  // Ensure the correct frontend URL
                .AllowAnyMethod()
-               .AllowAnyHeader());
+               .AllowAnyHeader()
+               .AllowCredentials());
 });
 
 // Configure JWT authentication
@@ -35,37 +40,38 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-            ClockSkew = TimeSpan.Zero,  // Default is 5 minutes, setting to zero will remove the clock skew allowance
-            ValidIssuer = builder.Configuration["Jwt:Issuer"], // "ShopAppIssuer"
-            ValidAudience = builder.Configuration["Jwt:Audience"], // "MobileApp"
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"])) // Secret key for signing JWT tokens
+            ClockSkew = TimeSpan.Zero,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"]))
         };
     });
 
-// Add services to the container for controllers
+// Register controllers
 builder.Services.AddControllers();
 
-// Add Swagger for API documentation (only in development)
+// Register Swagger for API documentation
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline
+// Swagger configuration for development
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-// Enable CORS to allow localhost requests
+// Middleware to handle CORS, Authentication, and Authorization
 app.UseCors("AllowLocalhost");
-
-// Ensure authentication middleware is added before authorization
-app.UseAuthentication();  // Make sure authentication middleware is called before authorization
+app.UseAuthentication();
 app.UseAuthorization();
 
-// Map controllers to routes
+// Map the SignalR hub for users
+app.MapHub<UsersHub>("/usersHub");  // This should work fine after authentication/authorization
+
+// Map the API controllers
 app.MapControllers();
 
 // Start the app

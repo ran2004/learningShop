@@ -11,14 +11,14 @@ export const routes: Routes = [
     path: 'items',
     component: ItemsPageComponent,
     resolve: {
-      items: UserResolver, // Associate the resolver with the route
+      userRole: UserResolver, 
     },
   },
   {
     path: 'itemsManagment',
     component: ItemsManagmentPageComponent,
     resolve: {
-      items: AdminResolver, // Associate the resolver with the route
+      userRole: AdminResolver, 
     },
   },
   {
@@ -29,7 +29,7 @@ export const routes: Routes = [
     path: 'users',
     component: UsersPageComponent,
     resolve: {
-      items: AdminResolver, // Associate the resolver with the route
+      userRole: AdminResolver, 
     },
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' },

@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Administrator\\Desktop\\ranBig\\.vs\\ShopApi\\ShopApi\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{44E904A3-D4E0-4A3E-86A3-85C5277668C8}|ShopApi\\ShopApi.csproj|c:\\users\\administrator\\desktop\\ranbig\\.vs\\shopapi\\shopapi\\shopapi\\usershub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{44E904A3-D4E0-4A3E-86A3-85C5277668C8}|ShopApi\\ShopApi.csproj|solutionrelative:shopapi\\usershub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{44E904A3-D4E0-4A3E-86A3-85C5277668C8}|ShopApi\\ShopApi.csproj|c:\\users\\administrator\\desktop\\ranbig\\.vs\\shopapi\\shopapi\\shopapi\\userconnectionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{44E904A3-D4E0-4A3E-86A3-85C5277668C8}|ShopApi\\ShopApi.csproj|solutionrelative:shopapi\\userconnectionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44E904A3-D4E0-4A3E-86A3-85C5277668C8}|ShopApi\\ShopApi.csproj|c:\\users\\administrator\\desktop\\ranbig\\.vs\\shopapi\\shopapi\\shopapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44E904A3-D4E0-4A3E-86A3-85C5277668C8}|ShopApi\\ShopApi.csproj|solutionrelative:shopapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44E904A3-D4E0-4A3E-86A3-85C5277668C8}|ShopApi\\ShopApi.csproj|c:\\users\\administrator\\desktop\\ranbig\\.vs\\shopapi\\shopapi\\shopapi\\usershub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44E904A3-D4E0-4A3E-86A3-85C5277668C8}|ShopApi\\ShopApi.csproj|solutionrelative:shopapi\\usershub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{44E904A3-D4E0-4A3E-86A3-85C5277668C8}|ShopApi\\ShopApi.csproj|c:\\users\\administrator\\desktop\\ranbig\\.vs\\shopapi\\shopapi\\shopapi\\services\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -17,10 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{44E904A3-D4E0-4A3E-86A3-85C5277668C8}|ShopApi\\ShopApi.csproj|c:\\users\\administrator\\desktop\\ranbig\\.vs\\shopapi\\shopapi\\shopapi\\controllers\\itemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{44E904A3-D4E0-4A3E-86A3-85C5277668C8}|ShopApi\\ShopApi.csproj|solutionrelative:shopapi\\controllers\\itemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{44E904A3-D4E0-4A3E-86A3-85C5277668C8}|ShopApi\\ShopApi.csproj|c:\\users\\administrator\\desktop\\ranbig\\.vs\\shopapi\\shopapi\\shopapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{44E904A3-D4E0-4A3E-86A3-85C5277668C8}|ShopApi\\ShopApi.csproj|solutionrelative:shopapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{44E904A3-D4E0-4A3E-86A3-85C5277668C8}|ShopApi\\ShopApi.csproj|c:\\users\\administrator\\desktop\\ranbig\\.vs\\shopapi\\shopapi\\shopapi\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -81,7 +81,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -93,16 +93,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "UsersHub.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\ranBig\\.vs\\ShopApi\\ShopApi\\ShopApi\\UsersHub.cs",
               "RelativeDocumentMoniker": "ShopApi\\UsersHub.cs",
               "ToolTip": "C:\\Users\\Administrator\\Desktop\\ranBig\\.vs\\ShopApi\\ShopApi\\ShopApi\\UsersHub.cs",
               "RelativeToolTip": "ShopApi\\UsersHub.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAowC0AAAA4AAAAAAAAAA==",
+              "ViewState": "AgIAABMAAAAAAAAAAAAowBgAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T15:15:02.01Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-26T15:15:02.01Z"
             },
             {
               "$type": "Document",
@@ -114,12 +113,11 @@
               "RelativeToolTip": "ShopApi\\Services\\ItemService.cs",
               "ViewState": "AgIAAEgAAAAAAAAAAAAAwFEAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T13:25:43.42Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-25T13:25:43.42Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "ItemController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\ranBig\\.vs\\ShopApi\\ShopApi\\ShopApi\\Controllers\\ItemController.cs",
               "RelativeDocumentMoniker": "ShopApi\\Controllers\\ItemController.cs",
@@ -127,8 +125,7 @@
               "RelativeToolTip": "ShopApi\\Controllers\\ItemController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-23T12:25:56.955Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-23T12:25:56.955Z"
             },
             {
               "$type": "Document",
@@ -140,8 +137,7 @@
               "RelativeToolTip": "ShopApi\\Types\\RoleType.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T07:35:31.296Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-24T07:35:31.296Z"
             },
             {
               "$type": "Document",
@@ -153,8 +149,7 @@
               "RelativeToolTip": "ShopApi\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-02-23T12:27:27.799Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-23T12:27:27.799Z"
             },
             {
               "$type": "Document",
@@ -166,8 +161,7 @@
               "RelativeToolTip": "ShopApi\\Services\\UserService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAADUAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T13:25:29.852Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-25T13:25:29.852Z"
             },
             {
               "$type": "Document",
@@ -179,25 +173,24 @@
               "RelativeToolTip": "ShopApi\\Controllers\\UsersController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T07:15:22.831Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-24T07:15:22.831Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "UserConnectionManager.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\ranBig\\.vs\\ShopApi\\ShopApi\\ShopApi\\UserConnectionManager.cs",
               "RelativeDocumentMoniker": "ShopApi\\UserConnectionManager.cs",
               "ToolTip": "C:\\Users\\Administrator\\Desktop\\ranBig\\.vs\\ShopApi\\ShopApi\\ShopApi\\UserConnectionManager.cs",
               "RelativeToolTip": "ShopApi\\UserConnectionManager.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAgwA8AAAA3AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-26T15:16:04.696Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "TokenService.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\ranBig\\.vs\\ShopApi\\ShopApi\\ShopApi\\Services\\TokenService.cs",
               "RelativeDocumentMoniker": "ShopApi\\Services\\TokenService.cs",
@@ -205,21 +198,19 @@
               "RelativeToolTip": "ShopApi\\Services\\TokenService.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAxwBoAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T12:10:23.326Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-26T12:10:23.326Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\ranBig\\.vs\\ShopApi\\ShopApi\\ShopApi\\Program.cs",
               "RelativeDocumentMoniker": "ShopApi\\Program.cs",
               "ToolTip": "C:\\Users\\Administrator\\Desktop\\ranBig\\.vs\\ShopApi\\ShopApi\\ShopApi\\Program.cs",
               "RelativeToolTip": "ShopApi\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-23T12:27:32.892Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-23T12:27:32.892Z"
             },
             {
               "$type": "Document",
@@ -231,8 +222,7 @@
               "RelativeToolTip": "ShopApi\\AppDbContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T07:39:39.904Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-24T07:39:39.904Z"
             },
             {
               "$type": "Document",
@@ -256,8 +246,7 @@
               "RelativeToolTip": "ShopApi\\ShopApi.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-02-25T12:24:07.749Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-25T12:24:07.749Z"
             },
             {
               "$type": "Document",

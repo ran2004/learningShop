@@ -1,3 +1,37 @@
-.itemCard{
-    width: 100%;
+.itemCard {
+  display: flex;
+  width: 80%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.itemActions {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-bottom: 20%;
+}
+
+.itemInfo {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  height: 60%;
+  justify-content: space-evenly;
+}
+
+.preventOverlowText {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mat-body-1 {
+  width: 100%;
+  margin-top: 10%;
+  margin-left: 5%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

@@ -29,7 +29,7 @@ export class ManagmentItemCardComponent implements OnInit {
   @Input() deleteItemInDB!: (id:number)=>void
   @Input() saveItemInDB!: (updatedItem:Item)=>void
 
-  isFromOpen: boolean = false; // To toggle between edit and view mode
+  isFromOpen: boolean = false;
 
   constructor() {
   

@@ -13,7 +13,7 @@ import { SignalRService } from '../services/signal.service';
 })
 export class UsersPageComponent {
   users: User[] = [];
-  connectedUsersIds: string[] = []; // Store IDs of connected users
+  connectedUsersIds: string[] = []; 
 
   constructor(
     private usersService: UsersService,
@@ -22,7 +22,7 @@ export class UsersPageComponent {
 
   ngOnInit(): void {
     this.connectedUsersIds = this.signalService.recivedUsersIdsList
-    this.signalService.onReceiveUserList((connectedUserIds: string[]) => {
+    this.signalService.onReceiveUserList("UsersPageComponent",(connectedUserIds: string[]) => {
       this.connectedUsersIds = connectedUserIds;
       this.updateUsersActivityStatus();
     });

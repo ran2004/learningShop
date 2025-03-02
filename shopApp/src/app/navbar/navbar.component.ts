@@ -30,7 +30,6 @@ export class NavbarComponent implements OnInit {
         }
       }
     });
-    // this.signalRService.startConnection()
   }
 
   getUserRole(): void {

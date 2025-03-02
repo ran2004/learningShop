@@ -8,7 +8,6 @@ namespace ShopApi
 
         public void AddConnection(string userId, string connectionId)
         {
-            Console.WriteLine("ok");
             if (userId != null)
             {
                 if (!_userConnections.ContainsKey(userId))

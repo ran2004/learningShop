@@ -1,17 +1,13 @@
 <mat-card class="itemCard">
-  <mat-card-header>
-    <mat-card-title>{{ item.name }}</mat-card-title>
-    <mat-card-subtitle>Price: ${{ item.price }}</mat-card-subtitle>
-  </mat-card-header>
+    <div class="itemInfo">
+      <div class="mat-body-1">{{ item.name }}</div>
+      <div class="mat-body-1">Price: ${{ item.price }}</div>
+    </div>
   <mat-card-content>
-    <div>
-      <p>Amount Available: {{ item.amount }}</p>
-      <button *ngIf="item.amount" (click)="Buy()">
-        Buy
-      </button>
-      <button *ngIf="isAdmin" (click)="Add()">
-        Add
-      </button>
+    <p class="preventOverflowText">Amount Available: {{ item.amount }}</p>
+    <div class="itemActions">
+      <button *ngIf="item.amount" (click)="Buy()">Buy</button>
+      <button *ngIf="isAdmin" (click)="Add()">Add</button>
     </div>
   </mat-card-content>
 </mat-card>

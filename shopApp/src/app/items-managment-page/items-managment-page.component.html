@@ -26,7 +26,11 @@
       </mat-card>
     </ng-template>
     <ng-template #formTemplate>
-      <app-item-form-card [onSave]="addItem.bind(this)" class="add-item-card" [(isFromOpen)]="isFromOpen"></app-item-form-card>
+      <app-item-form-card
+        [onSave]="addItem.bind(this)"
+        class="add-item-card"
+        [(isFromOpen)]="isFromOpen"
+      ></app-item-form-card>
     </ng-template>
     <ng-container
       *ngTemplateOutlet="isFromOpen === true ? formTemplate : addButtonTemplate"

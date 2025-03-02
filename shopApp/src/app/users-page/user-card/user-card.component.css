@@ -1,4 +1,13 @@
 .userCard{
     display: flex;
+    width: 80%;
     align-items: center;
+    justify-content: space-between;
+}
+
+.userContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 20%;
 }

@@ -1,4 +1,4 @@
-<div class="item-list">
+<div class="item-page">
   <h1>Shop</h1>
   <input
     type="text"
@@ -6,12 +6,14 @@
     placeholder="Search items..."
     class="filter-input"
   />
-  <app-item-card
-    class="itemCard"
-    *ngFor="let item of filteredItems"
-    [isAdmin]="isAdmin"
-    [item]="item"
-    [buyItem]="buyItem.bind(this)"
-    [addToItem]="addToItem.bind(this)"
-  ></app-item-card>
+  <div class="item-list">
+    <app-item-card
+      class="itemCard"
+      *ngFor="let item of filteredItems"
+      [isAdmin]="isAdmin"
+      [item]="item"
+      [buyItem]="buyItem.bind(this)"
+      [addToItem]="addToItem.bind(this)"
+    ></app-item-card>
+  </div>
 </div>

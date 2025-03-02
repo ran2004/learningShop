@@ -1,6 +1,5 @@
 .itemManagmentCard {
-    width: 80%;
-
+  width: 80%;
 }
 
 .cardContent {
@@ -9,21 +8,25 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
 .itemInfo {
   display: flex;
   flex-direction: column;
   height: 60%;
   justify-content: space-evenly;
 }
+
 .cardActions {
   display: flex;
   justify-content: space-evenly;
 }
-input {
-  margin-top: 15%;
-  height: 30px;
-  font-size: medium;
-}
+
 .itemManagmentCard mat-body-1 {
   margin-top: 15%;
+}
+
+.mat-body-1 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

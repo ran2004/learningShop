@@ -4,8 +4,9 @@ import { Item } from '../types/models/Item';
 import { CommonModule } from '@angular/common';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { ItemsService } from '../services/items.service';
+import { ActivatedRoute } from '@angular/router';
+import { ROLE } from '../types/enums/Role';
 
 @Component({
   selector: 'app-items-page',
@@ -20,8 +21,8 @@ export class ItemsPageComponent {
   searchControl: FormControl = new FormControl('');
 
   constructor(
-    private route: ActivatedRoute,
-    private itemsService: ItemsService
+    private itemsService: ItemsService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -30,8 +31,8 @@ export class ItemsPageComponent {
       this.filteredItems = items;
     });
     this.filteredItems = this.items;
-    // this.isAdmin = this.route.snapshot.data['user']?.isAdmin === ROLE.Admin;
-    this.isAdmin = true;
+    console.log((this.route.snapshot.data['userRole'] === ROLE.Admin))
+    this.isAdmin = (this.route.snapshot.data['userRole'] === ROLE.Admin);
     this.searchControl.valueChanges
       .pipe(debounceTime(100), distinctUntilChanged())
       .subscribe(() => {

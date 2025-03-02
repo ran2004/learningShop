@@ -41,7 +41,7 @@ export class ItemsManagmentPageComponent {
   filteredItems: Item[] = [];
   isFromOpen: boolean = false;
 
-  searchControl: FormControl = new FormControl(''); // FormControl for search input
+  searchControl: FormControl = new FormControl(''); 
 
   constructor(private itemsService: ItemsService) {}
 

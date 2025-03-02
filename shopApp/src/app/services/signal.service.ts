@@ -10,7 +10,7 @@ import {
 })
 export class SignalRService {
   private connection: HubConnection;
-  private callbacks: Array<(users: string[]) => void> = []; // Store all callbacks here
+  private callbacksMap: Map<string, (users: string[]) => void> = new Map();
   public recivedUsersIdsList: string[] = [];
 
   constructor() {
@@ -18,17 +18,16 @@ export class SignalRService {
       Authorization: `Bearer ${this.getToken()}`,
     };
 
-    // Create the initial connection
     this.connection = new HubConnectionBuilder()
       .withUrl('http://localhost:5212/usersHub', { headers })
       .configureLogging(LogLevel.Information)
       .build();
 
-    // Ensure the connection's 'onReceiveUserList' method works
     this.connection.on('receiveuserlist', (usersIds: string[]) => {
       this.recivedUsersIdsList = usersIds;
-      // Execute all stored callbacks with the received data
-      this.callbacks.forEach((callback) => callback(usersIds));
+      this.callbacksMap.forEach((value, key) => {
+        value(usersIds);
+      });
     });
   }
 
@@ -58,9 +57,11 @@ export class SignalRService {
       });
   }
 
-  // Store the callback and trigger it when the user list is received
-  public onReceiveUserList(callback: (users: string[]) => void): void {
-    this.callbacks.push(callback);
+  public onReceiveUserList(
+    componentName: string,
+    callback: (users: string[]) => void
+  ): void {
+    this.callbacksMap.set(componentName, callback);
   }
 
   public async updateToken(): Promise<void> {
@@ -69,23 +70,21 @@ export class SignalRService {
         Authorization: `Bearer ${this.getToken()}`,
       };
 
-      // First stop the current connection, waiting for it to finish
       await this.stopConnection();
 
-      // Now create a new connection with the updated token
       this.connection = new HubConnectionBuilder()
         .withUrl('http://localhost:5212/usersHub', { headers })
         .configureLogging(LogLevel.Information)
         .build();
 
-      // Reattach the callback to the new connection
       this.connection.on('receiveuserlist', (usersIds: string[]) => {
         this.recivedUsersIdsList = usersIds;
-        // Execute all stored callbacks with the received data
-        this.callbacks.forEach((callback) => callback(usersIds));
+
+        this.callbacksMap.forEach((value, key) => {
+          value(usersIds);
+        });
       });
 
-      // Start the new connection
       await this.startConnection();
     } catch (err) {
       console.error('Error while updating the SignalR connection:', err);

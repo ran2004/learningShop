@@ -33,9 +33,6 @@ export class LoginPageComponent {
     });
   }
 
-  ngOnInit(): void {}
-
-  // Method to handle form submission
   onLogin(): void {
     if (this.loginForm.valid) {
       this._usersService
